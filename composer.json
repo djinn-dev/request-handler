@@ -1,0 +1,23 @@
+{
+	"name": "djinn-dev/request-handler",
+	"description": "A simple request handler for parsing incoming inputs.",
+	"minimum-stability": "stable",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Trevor Geene",
+			"email": "trevor.geene@gmail.com"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"DjinnDev\\RequestHandler\\": "src/"
+		}
+	},
+	"require": {
+		"php": ">=8.1",
+		"ext-json": "*",
+		"ext-simplexml": "*"
+	},
+	"require-dev": {}
+}
