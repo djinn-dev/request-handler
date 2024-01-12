@@ -61,7 +61,7 @@ abstract class Base implements Factory
 	 * @param string|int ...$inputName
 	 * @return mixed
 	 */
-	public function getInput(...$inputName)
+	public function getInput(string|int ...$inputName)
 	{
 		// save data to local for nesting checks below
 		$data = $this->_rawData;
@@ -97,7 +97,7 @@ abstract class Base implements Factory
 	 * @param string|int ...$inputName
 	 * @return bool
 	 */
-	public function hasInput(...$inputName): bool
+	public function hasInput(string|int ...$inputName): bool
 	{
 		// utilize getInput to reduce code redundancy
 		return !is_null($this->getInput(...$inputName));
@@ -110,7 +110,7 @@ abstract class Base implements Factory
 	 * @param string|int ...$inputName
 	 * @return string
 	 */
-	public function getInputType(...$inputName): string
+	public function getInputType(string|int ...$inputName): string
 	{
 		// utilize getInput to reduce code redundancy
 		return gettype($this->getInput(...$inputName));
