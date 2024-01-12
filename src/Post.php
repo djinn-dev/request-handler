@@ -28,6 +28,6 @@ class Post extends Base
 	 */
 	private function __construct()
 	{
-		$this->_rawData = $_GET;
+		$this->_rawData = $_POST;
 	}
 }
