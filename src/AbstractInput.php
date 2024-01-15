@@ -2,7 +2,7 @@
 
 namespace DjinnDev\RequestHandler;
 
-abstract class Input extends Base
+abstract class AbstractInput extends AbstractBase
 {
 	/**
 	 * Protected.

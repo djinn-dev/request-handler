@@ -2,7 +2,7 @@
 
 namespace DjinnDev\RequestHandler;
 
-abstract class Base implements Factory
+abstract class AbstractBase implements FactoryInterface
 {
 	/**
 	 * Protected.

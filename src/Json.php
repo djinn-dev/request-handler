@@ -2,7 +2,7 @@
 
 namespace DjinnDev\RequestHandler;
 
-class Json extends Input
+class Json extends AbstractInput
 {
 	/**
 	 * Public.

@@ -2,7 +2,7 @@
 
 namespace DjinnDev\RequestHandler;
 
-class Post extends Input
+class Post extends AbstractInput
 {
 	/**
 	 * Public.

@@ -2,7 +2,7 @@
 
 namespace DjinnDev\RequestHandler;
 
-interface Factory
+interface FactoryInterface
 {
 	/**
 	 * Public.
