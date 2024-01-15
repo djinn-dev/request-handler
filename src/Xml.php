@@ -2,7 +2,7 @@
 
 namespace DjinnDev\RequestHandler;
 
-class Xml extends Base
+class Xml extends Input
 {
 	/**
 	 * Public.

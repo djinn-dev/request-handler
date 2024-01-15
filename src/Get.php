@@ -2,7 +2,7 @@
 
 namespace DjinnDev\RequestHandler;
 
-class Get extends Base
+class Get extends Input
 {
 	/**
 	 * Public.
