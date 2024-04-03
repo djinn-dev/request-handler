@@ -5,7 +5,7 @@ namespace DjinnDev\RequestHandler;
 use \DjinnDev\RequestHandler\Abstracts\Input;
 use \DjinnDev\RequestHandler\Traits\Instance;
 
-class PostObject extends Input
+class Post extends Input
 {
     use Instance;
 

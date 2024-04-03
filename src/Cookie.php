@@ -5,7 +5,7 @@ namespace DjinnDev\RequestHandler;
 use \DjinnDev\RequestHandler\Abstracts\Input;
 use \DjinnDev\RequestHandler\Traits\Instance;
 
-class CookieObject extends Input
+class Cookie extends Input
 {
 	use Instance;
 

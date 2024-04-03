@@ -5,7 +5,7 @@ namespace DjinnDev\RequestHandler;
 use \DjinnDev\RequestHandler\Abstracts\Input;
 use \DjinnDev\RequestHandler\Traits\Instance;
 
-class GetObject extends Input
+class Get extends Input
 {
     use Instance;
 

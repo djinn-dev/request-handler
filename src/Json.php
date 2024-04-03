@@ -6,7 +6,7 @@ use \DjinnDev\RequestHandler\Abstracts\Input;
 use \DjinnDev\RequestHandler\Traits\Instance;
 use \DjinnDev\RequestHandler\Traits\PhpInput;
 
-class JsonObject extends Input
+class Json extends Input
 {
     use Instance, PhpInput;
 

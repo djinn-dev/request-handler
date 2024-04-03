@@ -6,7 +6,7 @@ use \DjinnDev\RequestHandler\Abstracts\Input;
 use \DjinnDev\RequestHandler\Traits\Instance;
 use \DjinnDev\RequestHandler\Traits\PhpInput;
 
-class XmlObject extends Input
+class Xml extends Input
 {
     use Instance, PhpInput;
 
