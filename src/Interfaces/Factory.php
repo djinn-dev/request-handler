@@ -1,8 +1,8 @@
 <?php
 
-namespace DjinnDev\RequestHandler;
+namespace DjinnDev\RequestHandler\Factory;
 
-interface FactoryInterface
+interface Factory
 {
 	/**
 	 * Public.

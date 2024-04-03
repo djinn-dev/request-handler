@@ -2,25 +2,12 @@
 
 namespace DjinnDev\RequestHandler;
 
-class Post extends AbstractInput
-{
-	/**
-	 * Public.
-	 * Get pointer to existing instance of class or generate a new instance.
-	 * 
-	 * @return self
-	 */
-	public static function getInstance(): self
-	{
-		// Check if instance exists
-		if(self::$_instance === null)
-		{
-			// Instance not found, make a new one
-			self::$_instance = new self();
-		}
+use \DjinnDev\RequestHandler\Abstracts\Input;
+use \DjinnDev\RequestHandler\Traits\Instance;
 
-		return self::$_instance;
-	}
+class PostObject extends Input
+{
+    use Instance;
 
 	/**
 	 * Private.

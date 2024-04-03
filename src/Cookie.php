@@ -5,9 +5,9 @@ namespace DjinnDev\RequestHandler;
 use \DjinnDev\RequestHandler\Abstracts\Input;
 use \DjinnDev\RequestHandler\Traits\Instance;
 
-class GetObject extends Input
+class CookieObject extends Input
 {
-    use Instance;
+	use Instance;
 
 	/**
 	 * Private.
@@ -15,6 +15,6 @@ class GetObject extends Input
 	 */
 	private function __construct()
 	{
-		$this->_rawData = $_GET;
+		$this->_rawData = $_COOKIE;
 	}
 }
