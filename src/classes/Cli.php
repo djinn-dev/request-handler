@@ -15,6 +15,16 @@ class Cli extends Input
 	 */
 	private function __construct()
 	{
-		$this->_rawData = $_SERVER['argv'] ?? [];
+		$argv = $_SERVER['argv'] ?? [];
+		foreach($argv as $value)
+		{
+			if(substr($value, 0, 1) === '-' && strpos($value, '=') !== false)
+			{
+				$split = explode('=', $value, 2);
+				$key = ltrim($split[0], '-');
+				$argv[$key] = $split[1];
+			}
+		}
+		$this->_rawData = $argv;
 	}
 }
