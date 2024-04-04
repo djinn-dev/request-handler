@@ -2,32 +2,19 @@
 
 namespace DjinnDev\RequestHandler;
 
-class Url extends AbstractBase
+use \DjinnDev\RequestHandler\Interfaces\Factory;
+use \DjinnDev\RequestHandler\Traits\Instance;
+
+class Url implements Factory
 {
+    use Instance;
+
 	protected string $_schema;
 	protected string $_host;
-	protected string $_port;
+	protected int $_port;
 	protected string $_uri;
 
-	/**
-	 * Public.
-	 * Get pointer to existing instance of class or generate a new instance.
-	 *
-	 * @return self
-	 */
-	public static function getInstance(): self
-	{
-		// Check if instance exists
-		if(self::$_instance === null)
-		{
-			// Instance not found, make a new one
-			self::$_instance = new self();
-		}
-
-		return self::$_instance;
-	}
-
-	/**
+    /**
 	 * Private.
 	 * Run init parts for loading class.
 	 */
@@ -35,7 +22,7 @@ class Url extends AbstractBase
 	{
 		$this->_schema = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https' : 'http';
 
-		$this->_port = $_SERVER['SERVER_PORT'] ?? '80';
+		$this->_port = (int) $_SERVER['SERVER_PORT'] ?? 80;
 
 		$this->_host = $_SERVER['HTTP_HOST'] ?? 'localhost';
 
@@ -61,6 +48,14 @@ class Url extends AbstractBase
 	}
 
 	/**
+	 * @return int
+	 */
+	public function getPort(): int
+	{
+		return $this->_port;
+	}
+
+	/**
 	 * @return string
 	 */
 	public function getUri(): string
@@ -68,6 +63,9 @@ class Url extends AbstractBase
 		return $this->_uri;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getFullUrl(): string
 	{
 		return $this->_schema . '://' . $this->_host . $this->_uri;

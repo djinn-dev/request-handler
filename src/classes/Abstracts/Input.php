@@ -1,8 +1,10 @@
 <?php
 
-namespace DjinnDev\RequestHandler;
+namespace DjinnDev\RequestHandler\Abstracts;
 
-abstract class AbstractInput extends AbstractBase
+use \DjinnDev\RequestHandler\Interfaces\Factory;
+
+abstract class Input implements Factory
 {
 	/**
 	 * Protected.
@@ -20,20 +22,6 @@ abstract class AbstractInput extends AbstractBase
 	 * @var array
 	 */
 	private array $__validKeyTypes = ['string' => 1, 'integer' => 1];
-	
-	/**
-	 * Protected.
-	 * Function returns trimmed content of php://input.
-	 * 
-	 * @return string
-	 */
-	protected function _getPhpInputContents(): string
-	{
-		// pull data from input
-		$input = file_get_contents('php://input');
-		// basic sanity
-		return trim($input);
-	}
 
 	/**
 	 * Public.
@@ -45,7 +33,7 @@ abstract class AbstractInput extends AbstractBase
 	{
 		return $this->_rawData;
 	}
-
+    
 	/**
 	 * Public.
 	 * Returns value of specific location in request.

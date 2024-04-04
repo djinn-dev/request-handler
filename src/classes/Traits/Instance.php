@@ -1,10 +1,18 @@
 <?php
 
-namespace DjinnDev\RequestHandler;
+namespace DjinnDev\RequestHandler\Traits;
 
-class Post extends AbstractInput
+trait Instance
 {
 	/**
+	 * Protected.
+	 * Used for saving static instace of class
+	 * 
+	 * @var object|null
+	 */
+	protected static ?object $_instance = null;
+	
+    /**
 	 * Public.
 	 * Get pointer to existing instance of class or generate a new instance.
 	 * 
@@ -20,14 +28,5 @@ class Post extends AbstractInput
 		}
 
 		return self::$_instance;
-	}
-
-	/**
-	 * Private.
-	 * Run init parts for loading class.
-	 */
-	private function __construct()
-	{
-		$this->_rawData = $_POST;
 	}
 }
