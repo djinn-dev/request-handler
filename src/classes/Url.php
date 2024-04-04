@@ -22,7 +22,7 @@ class Url implements Factory
 	{
 		$this->_schema = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https' : 'http';
 
-		$this->_port = (int) $_SERVER['SERVER_PORT'] ?? 80;
+		$this->_port = (int) ($_SERVER['SERVER_PORT'] ?? 80);
 
 		$this->_host = $_SERVER['HTTP_HOST'] ?? 'localhost';
 
@@ -68,6 +68,17 @@ class Url implements Factory
 	 */
 	public function getFullUrl(): string
 	{
-		return $this->_schema . '://' . $this->_host . $this->_uri;
+		$url = $this->_schema . '://';
+		$url .= $this->_host;
+		if(
+			!in_array($this->_port, [80, 443])
+			|| ($this->_port === 80 && $this->_schema !== 'http')
+			|| ($this->_port === 443 && $this->_schema !== 'https')
+		)
+		{
+			$url .= ':' . $this->_port;
+		}
+		$url .= $this->_uri;
+		return $url;
 	}
 }
