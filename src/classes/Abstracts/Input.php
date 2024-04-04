@@ -8,14 +8,6 @@ abstract class Input implements Factory
 {
 	/**
 	 * Protected.
-	 * Used for saving static instace of class
-	 * 
-	 * @var object|null
-	 */
-	protected static ?object $_instance = null;
-	
-	/**
-	 * Protected.
 	 * An array of all the information sent over.
 	 * Data is filled on first call of getInstance.
 	 * 
