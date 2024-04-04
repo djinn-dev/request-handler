@@ -27,6 +27,11 @@ function requestCookie(): RequestHandler\Cookie
     return RequestHandler\Cookie::getInstance();
 }
 
+function requestCli(): RequestHandler\Cli
+{
+    return RequestHandler\Cli::getInstance();
+}
+
 function requestUrl(): RequestHandler\Url
 {
     return RequestHandler\Url::getInstance();
