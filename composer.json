@@ -11,8 +11,9 @@
 	],
 	"autoload": {
 		"psr-4": {
-			"DjinnDev\\RequestHandler\\": "src/"
-		}
+			"DjinnDev\\RequestHandler\\": "src/classes/"
+		},
+		"files": ["src/files/helpers.php"]
 	},
 	"require": {
 		"php": ">=8.1",
