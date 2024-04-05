@@ -12,7 +12,7 @@ class Url implements Factory
 	protected string $_schema;
 	protected string $_host;
 	protected int $_port;
-	protected string $_uri;
+	protected string $_path;
 
     /**
 	 * Private.
@@ -28,7 +28,7 @@ class Url implements Factory
 
 		$uri = $_SERVER['REQUEST_URI'] ?? '';
 		$querySplit = explode('?', $uri);
-		$this->_uri = '/' . trim($querySplit[0], '/');
+		$this->_path = '/' . trim($querySplit[0], '/');
 	}
 
 	/**
@@ -58,9 +58,9 @@ class Url implements Factory
 	/**
 	 * @return string
 	 */
-	public function getUri(): string
+	public function getPath(): string
 	{
-		return $this->_uri;
+		return $this->_path;
 	}
 
 	/**
@@ -78,7 +78,7 @@ class Url implements Factory
 		{
 			$url .= ':' . $this->_port;
 		}
-		$url .= $this->_uri;
+		$url .= $this->_path;
 		return $url;
 	}
 }
