@@ -3,7 +3,7 @@
 namespace DjinnDev\RequestHandler;
 
 use \DjinnDev\RequestHandler\Abstracts\Input;
-use \DjinnDev\RequestHandler\Traits\Instance;
+use \DjinnDev\ToolBasics\Traits\Instance;
 
 class Get extends Input
 {

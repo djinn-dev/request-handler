@@ -3,7 +3,7 @@
 namespace DjinnDev\RequestHandler;
 
 use \DjinnDev\RequestHandler\Interfaces\Factory;
-use \DjinnDev\RequestHandler\Traits\Instance;
+use \DjinnDev\ToolBasics\Traits\Instance;
 
 class Url implements Factory
 {
