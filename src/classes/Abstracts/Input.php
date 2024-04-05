@@ -2,7 +2,7 @@
 
 namespace DjinnDev\RequestHandler\Abstracts;
 
-use \DjinnDev\RequestHandler\Interfaces\Factory;
+use \DjinnDev\ToolBasics\Interfaces\Factory;
 
 abstract class Input implements Factory
 {

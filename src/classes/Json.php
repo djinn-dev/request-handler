@@ -3,7 +3,7 @@
 namespace DjinnDev\RequestHandler;
 
 use \DjinnDev\RequestHandler\Abstracts\Input;
-use \DjinnDev\RequestHandler\Traits\Instance;
+use \DjinnDev\ToolBasics\Traits\Instance;
 use \DjinnDev\RequestHandler\Traits\PhpInput;
 
 class Json extends Input
