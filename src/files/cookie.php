@@ -7,7 +7,7 @@ use \DjinnDev\RequestHandler\Cookie;
  * 
  * @return \DjinnDev\RequestHandler\Cookie
  */
-function requestCookie(): Cookie
+function cookieRequest(): Cookie
 {
     return Cookie::getInstance();
 }
@@ -15,35 +15,38 @@ function requestCookie(): Cookie
 /**
  * Returns value of specific location in request.
  * 
- * @param string|int ...$inputName
+ * @param string|int $index
+ * @param string|int ...$indexes
  * @return mixed
  */
-function requestCookieInputValue(string|int ...$inputName)
+function cookieRequestInputValue(string|int $index, string|int ...$indexes)
 {
-    $class = requestCookie();
-    return $class->getInput(...$inputName);
+    $class = cookieRequest();
+    return $class->getInput($index, ...$indexes);
 }
 
 /**
  * Check if specific location in request has a value
  * 
- * @param string|int ...$inputName
+ * @param string|int $index
+ * @param string|int ...$indexes
  * @return bool
  */
-function requestCookieHasInput(string|int ...$inputName): bool
+function cookieRequestHasInput(string|int $index, string|int ...$indexes): bool
 {
-    $class = requestCookie();
-    return $class->hasInput(...$inputName);
+    $class = cookieRequest();
+    return $class->hasInput($index, ...$indexes);
 }
 
 /**
  * Get type of value for specific location in request
  * 
- * @param string|int ...$inputName
+ * @param string|int $index
+ * @param string|int ...$indexes
  * @return string
  */
-function requestCookieInputType(string|int ...$inputName): string
+function cookieRequestInputType(string|int $index, string|int ...$indexes): string
 {
-    $class = requestCookie();
-    return $class->getInputType(...$inputName);
+    $class = cookieRequest();
+    return $class->getInputType($index, ...$indexes);
 }

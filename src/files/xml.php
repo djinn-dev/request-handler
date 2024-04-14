@@ -7,7 +7,7 @@ use \DjinnDev\RequestHandler\Xml;
  * 
  * @return \DjinnDev\RequestHandler\Xml
  */
-function requestXml(): Xml
+function xmlRequest(): Xml
 {
     return Xml::getInstance();
 }
@@ -15,35 +15,38 @@ function requestXml(): Xml
 /**
  * Returns value of specific location in request.
  * 
- * @param string|int ...$inputName
+ * @param string|int $index
+ * @param string|int ...$indexes
  * @return mixed
  */
-function requestXmlInputValue(string|int ...$inputName)
+function xmlRequestInputValue(string|int $index, string|int ...$indexes)
 {
-    $class = requestXml();
-    return $class->getInput(...$inputName);
+    $class = xmlRequest();
+    return $class->getInput($index, ...$indexes);
 }
 
 /**
  * Check if specific location in request has a value
  * 
- * @param string|int ...$inputName
+ * @param string|int $index
+ * @param string|int ...$indexes
  * @return bool
  */
-function requestXmlHasInput(string|int ...$inputName): bool
+function xmlRequestHasInput(string|int $index, string|int ...$indexes): bool
 {
-    $class = requestXml();
-    return $class->hasInput(...$inputName);
+    $class = xmlRequest();
+    return $class->hasInput($index, ...$indexes);
 }
 
 /**
  * Get type of value for specific location in request
  * 
- * @param string|int ...$inputName
+ * @param string|int $index
+ * @param string|int ...$indexes
  * @return string
  */
-function requestXmlInputType(string|int ...$inputName): string
+function xmlRequestInputType(string|int $index, string|int ...$indexes): string
 {
-    $class = requestXml();
-    return $class->getInputType(...$inputName);
+    $class = xmlRequest();
+    return $class->getInputType($index, ...$indexes);
 }

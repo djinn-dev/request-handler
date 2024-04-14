@@ -7,7 +7,7 @@ use \DjinnDev\RequestHandler\Get;
  * 
  * @return \DjinnDev\RequestHandler\Get
  */
-function requestGet(): Get
+function getRequest(): Get
 {
     return Get::getInstance();
 }
@@ -15,35 +15,38 @@ function requestGet(): Get
 /**
  * Returns value of specific location in request.
  * 
- * @param string|int ...$inputName
+ * @param string|int $index
+ * @param string|int ...$indexes
  * @return mixed
  */
-function requestGetInputValue(string|int ...$inputName)
+function getRequestInputValue(string|int $index, string|int ...$indexes)
 {
-    $class = requestGet();
-    return $class->getInput(...$inputName);
+    $class = getRequest();
+    return $class->getInput($index, ...$indexes);
 }
 
 /**
  * Check if specific location in request has a value
  * 
- * @param string|int ...$inputName
+ * @param string|int $index
+ * @param string|int ...$indexes
  * @return bool
  */
-function requestGetHasInput(string|int ...$inputName): bool
+function getRequestHasInput(string|int $index, string|int ...$indexes): bool
 {
-    $class = requestGet();
-    return $class->hasInput(...$inputName);
+    $class = getRequest();
+    return $class->hasInput($index, ...$indexes);
 }
 
 /**
  * Get type of value for specific location in request
  * 
- * @param string|int ...$inputName
+ * @param string|int $index
+ * @param string|int ...$indexes
  * @return string
  */
-function requestGetInputType(string|int ...$inputName): string
+function getRequestInputType(string|int $index, string|int ...$indexes): string
 {
-    $class = requestGet();
-    return $class->getInputType(...$inputName);
+    $class = getRequest();
+    return $class->getInputType($index, ...$indexes);
 }

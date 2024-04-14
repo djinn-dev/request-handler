@@ -7,7 +7,7 @@ use \DjinnDev\RequestHandler\Json;
  * 
  * @return \DjinnDev\RequestHandler\Json
  */
-function requestJson(): Json
+function jsonRequest(): Json
 {
     return Json::getInstance();
 }
@@ -15,35 +15,38 @@ function requestJson(): Json
 /**
  * Returns value of specific location in request.
  * 
- * @param string|int ...$inputName
+ * @param string|int $index
+ * @param string|int ...$indexes
  * @return mixed
  */
-function requestJsonInputValue(string|int ...$inputName)
+function jsonRequestInputValue(string|int $index, string|int ...$indexes)
 {
-    $class = requestJson();
-    return $class->getInput(...$inputName);
+    $class = jsonRequest();
+    return $class->getInput($index, ...$indexes);
 }
 
 /**
  * Check if specific location in request has a value
  * 
- * @param string|int ...$inputName
+ * @param string|int $index
+ * @param string|int ...$indexes
  * @return bool
  */
-function requestJsonHasInput(string|int ...$inputName): bool
+function jsonRequestHasInput(string|int $index, string|int ...$indexes): bool
 {
-    $class = requestJson();
-    return $class->hasInput(...$inputName);
+    $class = jsonRequest();
+    return $class->hasInput($index, ...$indexes);
 }
 
 /**
  * Get type of value for specific location in request
  * 
- * @param string|int ...$inputName
+ * @param string|int $index
+ * @param string|int ...$indexes
  * @return string
  */
-function requestJsonInputType(string|int ...$inputName): string
+function jsonRequestInputType(string|int $index, string|int ...$indexes): string
 {
-    $class = requestJson();
-    return $class->getInputType(...$inputName);
+    $class = jsonRequest();
+    return $class->getInputType($index, ...$indexes);
 }

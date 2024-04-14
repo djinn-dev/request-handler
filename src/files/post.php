@@ -7,7 +7,7 @@ use \DjinnDev\RequestHandler\Post;
  * 
  * @return \DjinnDev\RequestHandler\Post
  */
-function requestPost(): Post
+function postRequest(): Post
 {
     return Post::getInstance();
 }
@@ -15,35 +15,38 @@ function requestPost(): Post
 /**
  * Returns value of specific location in request.
  * 
- * @param string|int ...$inputName
+ * @param string|int $index
+ * @param string|int ...$indexes
  * @return mixed
  */
-function requestPostInputValue(string|int ...$inputName)
+function postRequestInputValue(string|int $index, string|int ...$indexes)
 {
-    $class = requestPost();
-    return $class->getInput(...$inputName);
+    $class = postRequest();
+    return $class->getInput($index, ...$indexes);
 }
 
 /**
  * Check if specific location in request has a value
  * 
- * @param string|int ...$inputName
+ * @param string|int $index
+ * @param string|int ...$indexes
  * @return bool
  */
-function requestPostHasInput(string|int ...$inputName): bool
+function postRequestHasInput(string|int $index, string|int ...$indexes): bool
 {
-    $class = requestPost();
-    return $class->hasInput(...$inputName);
+    $class = postRequest();
+    return $class->hasInput($index, ...$indexes);
 }
 
 /**
  * Get type of value for specific location in request
  * 
- * @param string|int ...$inputName
+ * @param string|int $index
+ * @param string|int ...$indexes
  * @return string
  */
-function requestPostInputType(string|int ...$inputName): string
+function postRequestInputType(string|int $index, string|int ...$indexes): string
 {
-    $class = requestPost();
-    return $class->getInputType(...$inputName);
+    $class = postRequest();
+    return $class->getInputType($index, ...$indexes);
 }

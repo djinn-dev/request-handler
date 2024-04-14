@@ -33,66 +33,87 @@ abstract class Input implements Factory
 	{
 		return $this->_rawData;
 	}
+
+	/**
+	 * Private.
+	 * Returns value of specific location in request.
+	 * 
+	 * @param mixed $data
+	 * @param string|int $index
+	 * @param string|int|null ...$indexes
+	 * @return mixed
+	 */
+	private function __getInput($data, string|int $index, string|int|null ...$indexes)
+	{
+		if(
+			// verify data is currently an array
+			!is_array($data)
+			// verify index can be found
+			|| !array_key_exists($index, $data)
+		)
+		{
+			// input not found
+			return null;
+		}
+
+		// Set data to be equal to next value
+		$data = $data[$index];
+
+		// check if we need to go deeper
+		if(!empty($indexes))
+		{
+			// set index to be next item in the array
+			$index = $indexes[0];
+			// remove next item in array
+			unset($indexes[0]);
+			// reset the keys
+			reset($indexes);
+			// recursive call
+			$data = $this->__getInput($data, $index, ...$indexes);
+		}
+
+		// data found, return it. value may be null
+		return $data;
+	}
     
 	/**
 	 * Public.
 	 * Returns value of specific location in request.
 	 * 
-	 * @param string|int ...$inputName
+	 * @param string|int $index
+	 * @param string|int|null ...$indexes
 	 * @return mixed
 	 */
-	public function getInput(string|int ...$inputName)
+	public function getInput(string|int $index, string|int|null ...$indexes)
 	{
-		// save data to local for nesting checks below
-		$data = $this->_rawData;
-
-		// loop over indexes being looked for
-		foreach($inputName as $key)
-		{
-			if(
-				// verify if key is a valid index type
-				!array_key_exists(gettype($key), $this->__validKeyTypes)
-				// verify data is currently an array
-				|| !is_array($data)
-				// verify index can be found
-				|| !array_key_exists($key, $data)
-			)
-			{
-				// input not found
-				return null;
-			}
-
-			// overwrite data with next valid input level
-			$data = $data[$key];
-		}
-
-		// data was found, return it
-		return $data;
+		return $this->__getInput($this->_rawData, $index, ...$indexes);
 	}
 
 	/**
 	 * Public.
 	 * Check if specific location in request has a value
 	 * 
-	 * @param string|int ...$inputName
+	 * @param string|int $index
+	 * @param string|int|null ...$indexes
 	 * @return bool
 	 */
-	public function hasInput(string|int ...$inputName): bool
+	public function hasInput(string|int $index, string|int|null ...$indexes): bool
 	{
 		// utilize getInput to reduce code redundancy
-		return !is_null($this->getInput(...$inputName));
+		return !is_null($this->getInput($index, ...$indexes));
 	}
 
 	/**
 	 * Public.
 	 * Get type of value for specific location in request
 	 * 
-	 * @param string|int ...$inputName
+	 * @param string|int $index
+	 * @param string|int|null ...$indexes
 	 * @return string
 	 */
-	public function getInputType(string|int ...$inputName): string
+	public function getInputType(string|int $index, string|int|null ...$indexes): string
 	{
 		// utilize getInput to reduce code redundancy
-		return gettype($this->getInput(...$inputName));
+		return gettype($this->getInput($index, ...$indexes));
 	}
 }
