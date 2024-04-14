@@ -15,6 +15,17 @@ class Cli extends Input
 	 */
 	private function __construct()
 	{
+		$this->loadDataSource();
+	}
+
+	/**
+	 * Public.
+	 * Resets class to pull data from original source.
+	 * 
+	 * @return null
+	 */
+	public function loadDataSource(): null
+	{
 		$argv = $_SERVER['argv'] ?? [];
 		foreach($argv as $value)
 		{

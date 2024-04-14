@@ -16,11 +16,22 @@ class Json extends Input
 	 */
 	private function __construct()
 	{
+		$this->loadDataSource();
+	}
+
+	/**
+	 * Public.
+	 * Resets class to pull data from original source.
+	 * 
+	 * @return null
+	 */
+	public function loadDataSource(): null
+	{
 		$input = $this->_getPhpInputContents();
-		if(empty($input)) return;
+		if(empty($input)) return null;
 
 		$json = json_decode($input, true);
-		if(!is_array($json)) return;
+		if(!is_array($json)) return null;
 
 		$this->_rawData = $json;
 	}

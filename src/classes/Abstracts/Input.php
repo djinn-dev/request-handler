@@ -3,8 +3,9 @@
 namespace DjinnDev\RequestHandler\Abstracts;
 
 use \DjinnDev\ToolBasics\Interfaces\Factory;
+use \DjinnDev\Interfaces\RawData;
 
-abstract class Input implements Factory
+abstract class Input implements Factory, RawData
 {
 	/**
 	 * Protected.

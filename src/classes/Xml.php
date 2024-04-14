@@ -16,11 +16,22 @@ class Xml extends Input
 	 */
 	private function __construct()
 	{
+		$this->loadDataSource();
+	}
+
+	/**
+	 * Public.
+	 * Resets class to pull data from original source.
+	 * 
+	 * @return null
+	 */
+	public function loadDataSource(): null
+	{
 		$input = $this->_getPhpInputContents();
-		if(empty($input)) return;
+		if(empty($input)) return null;
 
 		$xml = $this->__parseXmlStringToArray($input);
-		if(!is_array($xml)) return;
+		if(!is_array($xml)) return null;
 
 		$this->_rawData = $xml;
 	}
