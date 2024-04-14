@@ -35,4 +35,15 @@ class Json extends Input
 
 		$this->_rawData = $json;
 	}
+
+	/**
+	 * Public.
+	 * Return copy of parsed data from request.
+	 * 
+	 * @return string
+	 */
+	public function getRawDataString(): string
+	{
+		return json_encode($this->_rawData);
+	}
 }

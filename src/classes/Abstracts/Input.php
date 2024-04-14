@@ -36,6 +36,17 @@ abstract class Input implements Factory, RawData
 	}
 
 	/**
+	 * Public.
+	 * Returns copy of parsed data from request.
+	 * 
+	 * @return string
+	 */
+	public function getRawDataString(): string
+	{
+		return http_build_query($this->_rawData);
+	}
+
+	/**
 	 * Private.
 	 * Returns value of specific location in request.
 	 * 
