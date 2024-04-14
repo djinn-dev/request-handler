@@ -2,51 +2,60 @@
 
 use \DjinnDev\RequestHandler\Post;
 
-/**
- * Returns instance of class.
- * 
- * @return \DjinnDev\RequestHandler\Post
- */
-function postRequest(): Post
+if(!function_exists('postRequest'))
 {
-    return Post::getInstance();
+    /**
+     * Returns instance of class.
+     * 
+     * @return \DjinnDev\RequestHandler\Post
+     */
+    function postRequest(): Post
+    {
+        return Post::getInstance();
+    }
 }
 
-/**
- * Returns value of specific location in request.
- * 
- * @param string|int $index
- * @param string|int ...$indexes
- * @return mixed
- */
-function postRequestInputValue(string|int $index, string|int ...$indexes)
+if(!function_exists('postRequestInputValue'))
 {
-    $class = postRequest();
-    return $class->getInput($index, ...$indexes);
+    /**
+     * Returns value of specific location in request.
+     * 
+     * @param string|int $index
+     * @param string|int ...$indexes
+     * @return mixed
+     */
+    function postRequestInputValue(string|int $index, string|int ...$indexes)
+    {
+        return Post::getInstance()->getInput($index, ...$indexes);
+    }
 }
 
-/**
- * Check if specific location in request has a value
- * 
- * @param string|int $index
- * @param string|int ...$indexes
- * @return bool
- */
-function postRequestHasInput(string|int $index, string|int ...$indexes): bool
+if(!function_exists('postRequestHasInput'))
 {
-    $class = postRequest();
-    return $class->hasInput($index, ...$indexes);
+    /**
+     * Check if specific location in request has a value
+     * 
+     * @param string|int $index
+     * @param string|int ...$indexes
+     * @return bool
+     */
+    function postRequestHasInput(string|int $index, string|int ...$indexes): bool
+    {
+        return Post::getInstance()->hasInput($index, ...$indexes);
+    }
 }
 
-/**
- * Get type of value for specific location in request
- * 
- * @param string|int $index
- * @param string|int ...$indexes
- * @return string
- */
-function postRequestInputType(string|int $index, string|int ...$indexes): string
+if(!function_exists('postRequestInputType'))
 {
-    $class = postRequest();
-    return $class->getInputType($index, ...$indexes);
+    /**
+     * Get type of value for specific location in request
+     * 
+     * @param string|int $index
+     * @param string|int ...$indexes
+     * @return string
+     */
+    function postRequestInputType(string|int $index, string|int ...$indexes): string
+    {
+        return Post::getInstance()->getInputType($index, ...$indexes);
+    }
 }

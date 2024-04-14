@@ -2,51 +2,60 @@
 
 use \DjinnDev\RequestHandler\Cookie;
 
-/**
- * Returns instance of class.
- * 
- * @return \DjinnDev\RequestHandler\Cookie
- */
-function cookieRequest(): Cookie
+if(!function_exists('cookieRequest'))
 {
-    return Cookie::getInstance();
+    /**
+     * Returns instance of class.
+     * 
+     * @return \DjinnDev\RequestHandler\Cookie
+     */
+    function cookieRequest(): Cookie
+    {
+        return Cookie::getInstance();
+    }
 }
 
-/**
- * Returns value of specific location in request.
- * 
- * @param string|int $index
- * @param string|int ...$indexes
- * @return mixed
- */
-function cookieRequestInputValue(string|int $index, string|int ...$indexes)
+if(!function_exists('cookieRequestInputValue'))
 {
-    $class = cookieRequest();
-    return $class->getInput($index, ...$indexes);
+    /**
+     * Returns value of specific location in request.
+     * 
+     * @param string|int $index
+     * @param string|int ...$indexes
+     * @return mixed
+     */
+    function cookieRequestInputValue(string|int $index, string|int ...$indexes)
+    {
+        return Cookie::getInstance()->getInput($index, ...$indexes);
+    }
 }
 
-/**
- * Check if specific location in request has a value
- * 
- * @param string|int $index
- * @param string|int ...$indexes
- * @return bool
- */
-function cookieRequestHasInput(string|int $index, string|int ...$indexes): bool
+if(!function_exists('cookieRequestHasInput'))
 {
-    $class = cookieRequest();
-    return $class->hasInput($index, ...$indexes);
+    /**
+     * Check if specific location in request has a value
+     * 
+     * @param string|int $index
+     * @param string|int ...$indexes
+     * @return bool
+     */
+    function cookieRequestHasInput(string|int $index, string|int ...$indexes): bool
+    {
+        return Cookie::getInstance()->hasInput($index, ...$indexes);
+    }
 }
 
-/**
- * Get type of value for specific location in request
- * 
- * @param string|int $index
- * @param string|int ...$indexes
- * @return string
- */
-function cookieRequestInputType(string|int $index, string|int ...$indexes): string
+if(!function_exists('cookieRequestInputType'))
 {
-    $class = cookieRequest();
-    return $class->getInputType($index, ...$indexes);
+    /**
+     * Get type of value for specific location in request
+     * 
+     * @param string|int $index
+     * @param string|int ...$indexes
+     * @return string
+     */
+    function cookieRequestInputType(string|int $index, string|int ...$indexes): string
+    {
+        return Cookie::getInstance()->getInputType($index, ...$indexes);
+    }
 }

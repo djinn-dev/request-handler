@@ -101,7 +101,7 @@ class Url implements Factory
 		
 		if($withQueryString)
 		{
-			$url .= '?' . http_build_query(getRequest()->getRawDataArray());
+			$url .= '?' . http_build_query(Get::getInstance()->getRawDataArray());
 		}
 
 		return $url;
