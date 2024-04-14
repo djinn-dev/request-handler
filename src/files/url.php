@@ -7,19 +7,19 @@ use \DjinnDev\RequestHandler\Url;
  * 
  * @return \DjinnDev\RequestHandler\Url
  */
-function requestUrl(): Url
+function urlRequest(): Url
 {
     return Url::getInstance();
 }
 
 /**
- * Get request path/uri
+ * Get request schema
  * 
  * @return string
  */
-function requestUrlSchema(): string
+function urlRequestSchema(): string
 {
-    $class = requestUrl();
+    $class = urlRequest();
     return $class->getSchema();
 }
 
@@ -28,9 +28,9 @@ function requestUrlSchema(): string
  * 
  * @return string
  */
-function requestUrlHost(): string
+function urlRequestHost(): string
 {
-    $class = requestUrl();
+    $class = urlRequest();
     return $class->getHost();
 }
 
@@ -39,9 +39,9 @@ function requestUrlHost(): string
  * 
  * @return int
  */
-function requestUrlPort(): int
+function urlRequestPort(): int
 {
-    $class = requestUrl();
+    $class = urlRequest();
     return $class->getPort();
 }
 
@@ -50,19 +50,21 @@ function requestUrlPort(): int
  * 
  * @return string
  */
-function requestUrlPath(): string
+function urlRequestPath(): string
 {
-    $class = requestUrl();
+    $class = urlRequest();
     return $class->getPath();
 }
 
 /**
  * Get full request url
  * 
+ * @param bool $withQueryString
+ * @param bool $includeImpliedPorts
  * @return string
  */
-function requestUrlFull(): string
+function urlRequestFull(bool $withQueryString = true, bool $includeImpliedPorts = false): string
 {
-    $class = requestUrl();
-    return $class->getFullUrl();
+    $class = urlRequest();
+    return $class->getFullUrl($withQueryString, $includeImpliedPorts);
 }
