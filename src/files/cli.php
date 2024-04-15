@@ -2,48 +2,60 @@
 
 use \DjinnDev\RequestHandler\Cli;
 
-/**
- * Returns instance of class.
- * 
- * @return \DjinnDev\RequestHandler\Cli
- */
-function requestCli(): Cli
+if(!function_exists('cliRequest'))
 {
-    return Cli::getInstance();
+    /**
+     * Returns instance of class.
+     * 
+     * @return \DjinnDev\RequestHandler\Cli
+     */
+    function cliRequest(): Cli
+    {
+        return Cli::getInstance();
+    }
 }
 
-/**
- * Returns value of specific location in request.
- * 
- * @param string|int ...$inputName
- * @return mixed
- */
-function requestCliInputValue(string|int ...$inputName)
+if(!function_exists('cliRequestInputValue'))
 {
-    $class = requestCli();
-    return $class->getInput(...$inputName);
+    /**
+     * Returns value of specific location in request.
+     * 
+     * @param string|int $index
+     * @param string|int ...$indexes
+     * @return mixed
+     */
+    function cliRequestInputValue(string|int $index, string|int ...$indexes)
+    {
+        return Cli::getInstance()->getInput($index, ...$indexes);
+    }
 }
 
-/**
- * Check if specific location in request has a value
- * 
- * @param string|int ...$inputName
- * @return bool
- */
-function requestCliHasInput(string|int ...$inputName): bool
+if(!function_exists('cliRequestHasInput'))
 {
-    $class = requestCli();
-    return $class->hasInput(...$inputName);
+    /**
+     * Check if specific location in request has a value
+     * 
+     * @param string|int $index
+     * @param string|int ...$indexes
+     * @return bool
+     */
+    function cliRequestHasInput(string|int $index, string|int ...$indexes): bool
+    {
+        return Cli::getInstance()->hasInput($index, ...$indexes);
+    }
 }
 
-/**
- * Get type of value for specific location in request
- * 
- * @param string|int ...$inputName
- * @return string
- */
-function requestCliInputType(string|int ...$inputName): string
+if(!function_exists('cliRequestInputType'))
 {
-    $class = requestCli();
-    return $class->getInputType(...$inputName);
+    /**
+     * Get type of value for specific location in request
+     * 
+     * @param string|int $index
+     * @param string|int ...$indexes
+     * @return string
+     */
+    function cliRequestInputType(string|int $index, string|int ...$indexes): string
+    {
+        return Cli::getInstance()->getInputType($index, ...$indexes);
+    }
 }

@@ -2,67 +2,82 @@
 
 use \DjinnDev\RequestHandler\Url;
 
-/**
- * Returns instance of class.
- * 
- * @return \DjinnDev\RequestHandler\Url
- */
-function requestUrl(): Url
+if(!function_exists('urlRequest'))
 {
-    return Url::getInstance();
+    /**
+     * Returns instance of class.
+     * 
+     * @return \DjinnDev\RequestHandler\Url
+     */
+    function urlRequest(): Url
+    {
+        return Url::getInstance();
+    }
 }
 
-/**
- * Get request path/uri
- * 
- * @return string
- */
-function requestUrlSchema(): string
+if(!function_exists('urlRequestSchema'))
 {
-    $class = requestUrl();
-    return $class->getSchema();
+    /**
+     * Get request schema
+     * 
+     * @return string
+     */
+    function urlRequestSchema(): string
+    {
+        return Url::getInstance()->getSchema();
+    }
 }
 
-/**
- * Get request host/domain
- * 
- * @return string
- */
-function requestUrlHost(): string
+if(!function_exists('urlRequestHost'))
 {
-    $class = requestUrl();
-    return $class->getHost();
+    /**
+     * Get request host/domain
+     * 
+     * @return string
+     */
+    function urlRequestHost(): string
+    {
+        return Url::getInstance()->getHost();
+    }
 }
 
-/**
- * Get request port
- * 
- * @return int
- */
-function requestUrlPort(): int
+if(!function_exists('urlRequestPort'))
 {
-    $class = requestUrl();
-    return $class->getPort();
+    /**
+     * Get request port
+     * 
+     * @return int
+     */
+    function urlRequestPort(): int
+    {
+        return Url::getInstance()->getPort();
+    }
 }
 
-/**
- * Get request path/uri
- * 
- * @return string
- */
-function requestUrlPath(): string
+if(!function_exists('urlRequestPath'))
 {
-    $class = requestUrl();
-    return $class->getPath();
+    /**
+     * Get request path/uri
+     * 
+     * @return string
+     */
+    function urlRequestPath(): string
+    {
+        return Url::getInstance()->getPath();
+    }
 }
 
-/**
- * Get full request url
- * 
- * @return string
- */
-function requestUrlFull(): string
+if(!function_exists('urlRequestFull'))
 {
-    $class = requestUrl();
-    return $class->getFullUrl();
+    /**
+     * Get full request url
+     * 
+     * @param bool $withQueryString
+     * @param bool $includeImpliedPorts
+     * @return string
+     */
+    function urlRequestFull(bool $withQueryString = true, bool $includeImpliedPorts = false): string
+    {
+        return Url::getInstance()->getFullUrl($withQueryString, $includeImpliedPorts);
+    }
 }

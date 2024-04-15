@@ -2,48 +2,60 @@
 
 use \DjinnDev\RequestHandler\Xml;
 
-/**
- * Returns instance of class.
- * 
- * @return \DjinnDev\RequestHandler\Xml
- */
-function requestXml(): Xml
+if(!function_exists('xmlRequest'))
 {
-    return Xml::getInstance();
+    /**
+     * Returns instance of class.
+     * 
+     * @return \DjinnDev\RequestHandler\Xml
+     */
+    function xmlRequest(): Xml
+    {
+        return Xml::getInstance();
+    }
 }
 
-/**
- * Returns value of specific location in request.
- * 
- * @param string|int ...$inputName
- * @return mixed
- */
-function requestXmlInputValue(string|int ...$inputName)
+if(!function_exists('xmlRequestInputValue'))
 {
-    $class = requestXml();
-    return $class->getInput(...$inputName);
+    /**
+     * Returns value of specific location in request.
+     * 
+     * @param string|int $index
+     * @param string|int ...$indexes
+     * @return mixed
+     */
+    function xmlRequestInputValue(string|int $index, string|int ...$indexes)
+    {
+        return Xml::getInstance()->getInput($index, ...$indexes);
+    }
 }
 
-/**
- * Check if specific location in request has a value
- * 
- * @param string|int ...$inputName
- * @return bool
- */
-function requestXmlHasInput(string|int ...$inputName): bool
+if(!function_exists('xmlRequestHasInput'))
 {
-    $class = requestXml();
-    return $class->hasInput(...$inputName);
+    /**
+     * Check if specific location in request has a value
+     * 
+     * @param string|int $index
+     * @param string|int ...$indexes
+     * @return bool
+     */
+    function xmlRequestHasInput(string|int $index, string|int ...$indexes): bool
+    {
+        return Xml::getInstance()->hasInput($index, ...$indexes);
+    }
 }
 
-/**
- * Get type of value for specific location in request
- * 
- * @param string|int ...$inputName
- * @return string
- */
-function requestXmlInputType(string|int ...$inputName): string
+if(!function_exists('xmlRequestInputType'))
 {
-    $class = requestXml();
-    return $class->getInputType(...$inputName);
+    /**
+     * Get type of value for specific location in request
+     * 
+     * @param string|int $index
+     * @param string|int ...$indexes
+     * @return string
+     */
+    function xmlRequestInputType(string|int $index, string|int ...$indexes): string
+    {
+        return Xml::getInstance()->getInputType($index, ...$indexes);
+    }
 }

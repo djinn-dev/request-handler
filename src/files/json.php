@@ -2,48 +2,60 @@
 
 use \DjinnDev\RequestHandler\Json;
 
-/**
- * Returns instance of class.
- * 
- * @return \DjinnDev\RequestHandler\Json
- */
-function requestJson(): Json
+if(!function_exists('jsonRequest'))
 {
-    return Json::getInstance();
+    /**
+     * Returns instance of class.
+     * 
+     * @return \DjinnDev\RequestHandler\Json
+     */
+    function jsonRequest(): Json
+    {
+        return Json::getInstance();
+    }
 }
 
-/**
- * Returns value of specific location in request.
- * 
- * @param string|int ...$inputName
- * @return mixed
- */
-function requestJsonInputValue(string|int ...$inputName)
+if(!function_exists('jsonRequestInputValue'))
 {
-    $class = requestJson();
-    return $class->getInput(...$inputName);
+    /**
+     * Returns value of specific location in request.
+     * 
+     * @param string|int $index
+     * @param string|int ...$indexes
+     * @return mixed
+     */
+    function jsonRequestInputValue(string|int $index, string|int ...$indexes)
+    {
+        return Json::getInstance()->getInput($index, ...$indexes);
+    }
 }
 
-/**
- * Check if specific location in request has a value
- * 
- * @param string|int ...$inputName
- * @return bool
- */
-function requestJsonHasInput(string|int ...$inputName): bool
+if(!function_exists('jsonRequestHasInput'))
 {
-    $class = requestJson();
-    return $class->hasInput(...$inputName);
+    /**
+     * Check if specific location in request has a value
+     * 
+     * @param string|int $index
+     * @param string|int ...$indexes
+     * @return bool
+     */
+    function jsonRequestHasInput(string|int $index, string|int ...$indexes): bool
+    {
+        return Json::getInstance()->hasInput($index, ...$indexes);
+    }
 }
 
-/**
- * Get type of value for specific location in request
- * 
- * @param string|int ...$inputName
- * @return string
- */
-function requestJsonInputType(string|int ...$inputName): string
+if(!function_exists('jsonRequestInputType'))
 {
-    $class = requestJson();
-    return $class->getInputType(...$inputName);
+    /**
+     * Get type of value for specific location in request
+     * 
+     * @param string|int $index
+     * @param string|int ...$indexes
+     * @return string
+     */
+    function jsonRequestInputType(string|int $index, string|int ...$indexes): string
+    {
+        return Json::getInstance()->getInputType($index, ...$indexes);
+    }
 }

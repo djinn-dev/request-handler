@@ -32,6 +32,9 @@ class Url implements Factory
 	}
 
 	/**
+	 * Public.
+	 * Get request schema
+	 * 
 	 * @return string
 	 */
 	public function getSchema(): string
@@ -40,6 +43,9 @@ class Url implements Factory
 	}
 
 	/**
+	 * Public.
+	 * Get request host/domain
+	 * 
 	 * @return string
 	 */
 	public function getHost(): string
@@ -48,6 +54,9 @@ class Url implements Factory
 	}
 
 	/**
+	 * Public.
+	 * Get request port
+	 * 
 	 * @return int
 	 */
 	public function getPort(): int
@@ -56,6 +65,9 @@ class Url implements Factory
 	}
 
 	/**
+	 * Public.
+	 * Get request path/uri
+	 * 
 	 * @return string
 	 */
 	public function getPath(): string
@@ -64,21 +76,34 @@ class Url implements Factory
 	}
 
 	/**
+	 * Public.
+	 * Get full request url
+	 * 
+	 * @param bool $withQueryString
+	 * @param bool $includeImpliedPorts
 	 * @return string
 	 */
-	public function getFullUrl(): string
+	public function getFullUrl(bool $withQueryString = true, bool $includeImpliedPorts = false): string
 	{
-		$url = $this->_schema . '://';
-		$url .= $this->_host;
+		$url = $this->_schema . '://' . $this->_host;
+		
 		if(
-			!in_array($this->_port, [80, 443])
+			$includeImpliedPorts
+			|| !in_array($this->_port, [80, 443])
 			|| ($this->_port === 80 && $this->_schema !== 'http')
 			|| ($this->_port === 443 && $this->_schema !== 'https')
 		)
 		{
 			$url .= ':' . $this->_port;
 		}
+		
 		$url .= $this->_path;
+		
+		if($withQueryString)
+		{
+			$url .= '?' . Get::getInstance()->getRawDataString();
+		}
+
 		return $url;
 	}
 }

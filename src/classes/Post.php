@@ -15,6 +15,17 @@ class Post extends Input
 	 */
 	private function __construct()
 	{
+		$this->loadDataSource();
+	}
+
+	/**
+	 * Public.
+	 * Resets class to pull data from original source.
+	 * 
+	 * @return null
+	 */
+	public function loadDataSource(): null
+	{
 		$this->_rawData = $_POST;
 	}
 }
