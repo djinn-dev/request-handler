@@ -64,4 +64,60 @@ class Xml extends Input
 
 		return $array;
 	}
+
+	/**
+	 * Public.
+	 * Return copy of parsed data from request.
+	 * 
+	 * @return string
+	 */
+	public function getRawDataString(): string
+	{
+		return $this->__buildXmlObject($this->_rawData)->asXML();
+	}
+
+	/**
+	 * Private.
+	 * Converts an array to a SimpleXMLElement obj
+	 * 
+	 * @param array $array
+	 * @param SimpleXMLElement|null $xml
+	 * @return SimpleXMLElement
+	 */
+	private function __buildXmlObject(array $array, ?SimpleXMLElement $xml = null): SimpleXMLElement
+	{
+		// If xml object not created
+		if($xml === null)
+		{
+			// If only one element at base, use as root element
+			$rootElement = (count($array) === 1) ? ('<' . array_key_first($array) . '/>') : '<root/>';
+			$xml = new SimpleXMLElement($rootElement);
+		}
+		 
+		// Visit all key value pair
+		foreach($array as $element => $content)
+		{
+			// solve how to handle element
+			if($element === '@attributes')
+			{
+				// loop array to add attributes
+				foreach($content as $attribute => $value)
+				{
+					$xml->addAttribute($attribute, $value);
+				}
+			}
+			elseif(is_array($content))
+			{
+				// use recursion to add next level
+				$xml = $this-__buildXmlObject($content, $xml);
+			}
+			else 
+			{
+				// Simply add child element. 
+				$xml->addChild($element, $content);
+			}
+		}
+		 
+		return $xml;
+	}
 }
